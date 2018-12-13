@@ -131,9 +131,10 @@ appleIDPWD="这里是你的appleid密码"
 #上传App Store
 echo '/+++++++ 上传App Store +++++++/'
 #验证并上传到App Store
-altoolPath="/Applications/Xcode.app/Contents/Applications/Application Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Versions/A/Support/altool"
-"$altoolPath" --validate-app -f ${$exportIpaPath}/${scheme_name}.ipa -u "${appleid}" -p "${appleIDPWD}" -t ios --output-format xml
-"$altoolPath" --upload-app -f ${$exportIpaPath}/${scheme_name}.ipa -u  "${appleid}" -p "${appleIDPWD}" -t ios --output-format xml
+
+altoolPath="/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Versions/A/Support/altool"
+"$altoolPath" --validate-app -f ${exportIpaPath}/$scheme_name.ipa -u "${appleid}" -p "${appleIDPWD}" -t ios --output-format xml
+"$altoolPath" --upload-app -f ${exportIpaPath}/$scheme_name.ipa -u  "${appleid}" -p "${appleIDPWD}" -t ios --output-format xml
 
 append_path="已上传到App Store"
 # 修改存放ipa包文件夹路径，添加后缀，以便区分上传平台
@@ -167,7 +168,7 @@ bundleId="替换成你的bundle id"
 
 echo '/+++++++ 压缩dSYM文件 +++++++/'
 cd $build_path/$project_name.xcarchive/dSYMs
-zip -r -o '${project_name}.app.dSYM.zip' "${project_name}.app.dSYM"
+zip -r -o ${project_name}.app.dSYM.zip "${project_name}.app.dSYM"
 echo '/+++++++ 压缩dSYM文件完成 +++++++/'
 
 
